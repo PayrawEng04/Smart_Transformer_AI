@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستەمی زیرەکی هەڵبژاردنی محەویلە</title>
+    <style>
+        /* CSS: بۆ جوانکاری و ڕێکخستنی ڕەنگەکان */
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(#e2ebf0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            border-top: 5px solid #2ecc71;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: 'Tahoma', sans-serif;
+        }
+        input:focus, select:focus {
+            border-color: #2ecc71;
+            outline: none;
+            box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
+        }
+        button {
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        /* بۆکسی ئەنجامەکە کە لە سەرەتادا شاراوەیە */
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f8f5;
+            border: 2px dashed #1abc9c;
+            border-radius: 10px;
+            display: none; /* سەرەتا نادیارە */
+            text-align: center;
+        }
+        .result-title {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .result-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #16a085;
+            margin: 10px 0;
+        }
+        .loading {
+            text-align: center;
+            display: none;
+            color: #f39c12;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>⚡ یاریدەدەری زیرەکی محەویلە</h2>
+        
+        <div class="form-group">
+            <label>ژمارەی ماڵەکان:</label>
+            <input type="number" id="housesInput" value="50" min="1">
+        </div>
+
+        <div class="form-group">
+            <label>تێکڕای ڕووبەری ماڵەکان (مەتر دووجا):</label>
+            <input type="number" id="areaInput" value="200" min="50">
+        </div>
+
+        <div class="form-group">
+            <label>ئاستی بژێوی گەڕەکەکە:</label>
+            <select id="statusInput">
+                <option value="Low">هەژارنشین (Low)</option>
+                <option value="Middle" selected>مامناوەند (Middle)</option>
+                <option value="High">دەوڵەمەند (High)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>وەرز:</label>
+            <select id="seasonInput">
+                <option value="Spring">بەهار</option>
+                <option value="Summer" selected>هاوین (لۆدی بەرز)</option>
+                <option value="Autumn">پایز</option>
+                <option value="Winter">زستان (لۆدی بەرز)</option>
+            </select>
+        </div>
+
+        <button onclick="calculateLoad()">هەژمارکردن بە AI</button>
+
+        <div class="loading" id="loadingText">خەریکی شیکردنەوەی داتاکانە... ⏳</div>
+
+        <div class="result-box" id="resultBox">
+            <div class="result-title">باری پێشبینیکراو (Peak Load)</div>
+            <div class="result-value" id="loadResult">0 kVA</div>
+            <hr style="border-top: 1px solid #1abc9c; margin: 15px 0;">
+            <div class="result-title">باشترین قەبارەی محەویلە</div>
+            <div class="result-value" id="transformerResult" style="color: #e67e22; font-size: 28px;">0 kVA</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: گارسۆنەکە کە زانیارییەکان دەبات بۆ باکئێندەکە
+        async function calculateLoad() {
+            // ١. هێنانەی زانیارییەکان لە شاشەکەوە
+            const houses = document.getElementById('housesInput').value;
+            const area = document.getElementById('areaInput').value;
+            const status = document.getElementById('statusInput').value;
+            const season = document.getElementById('seasonInput').value;
+
+            // نیشاندانی تێکستی چاوەڕوانکردن
+            document.getElementById('loadingText').style.display = 'block';
+            document.getElementById('resultBox').style.display = 'none';
+
+            // ٢. دروستکردنی پاکەتەکە بۆ ناردن (بە شێوەی JSON)
+            const dataPacket = {
+                houses: parseInt(houses),
+                area: parseInt(area),
+                status: status,
+                season: season
+            };
+
+            try {
+                /* * ٣. ناردنی داواکارییەکە بۆ باکئێند (API)
+                 * تێبینی: ئێستا ناونیشانی 127.0.0.1 (لۆکاڵ) مان داناوە.
+                 * کاتێک باکئێندەکەمان خستە سەر ئینتەرنێت، ئەم لینکە دەگۆڕین بۆ لینکی ڕاستەقینە.
+                 */
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataPacket)
+                });
+
+                const result = await response.json();
+
+                // ٤. ئەگەر سەرکەوتوو بوو، ئەنجامەکان لەسەر شاشەکە نیشان بدە
+                if (result.success) {
+                    document.getElementById('loadResult').innerText = result.predicted_load_kva + " kVA";
+                    document.getElementById('transformerResult').innerText = result.recommended_transformer_kva + " kVA";
+                    
+                    document.getElementById('loadingText').style.display = 'none';
+                    document.getElementById('resultBox').style.display = 'block';
+                } else {
+                    alert("کێشەیەک ڕوویدا لە کاتی هەژمارکردندا.");
+                    document.getElementById('loadingText').style.display = 'none';
+                }
+
+            } catch (error) {
+                // ئەگەر باکئێندەکە نەکرابووەوە، ئەم هەڵەیە دەدات
+                console.error('Error:', error);
+                alert("نەتوانرا پەیوەندی بە مێشکی زیرەکی دەستکردەکەوە (API) بکرێت. دڵنیابە کە سێرڤەرەکە کار دەکات.");
+                document.getElementById('loadingText').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

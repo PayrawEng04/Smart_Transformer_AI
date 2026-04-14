@@ -22,6 +22,11 @@
             overflow-x: hidden;
         }
 
+        /* ئەم کڵاسە لەلایەن جاڤاسکریپتەوە زیاد دەکرێت بۆ ڕاگرتنی سکڕۆڵی پشتەوە */
+        body.no-scroll {
+            overflow: hidden;
+        }
+
         body::before, body::after {
             content: ''; position: fixed; border-radius: 50%;
             filter: blur(100px); pointer-events: none; z-index: 0;
@@ -60,7 +65,7 @@
         /* ── MOBILE OVERLAY (شاشە تاریکەکە) ── */
         .panel-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.6); /* ڕەشترمان کرد بۆ ئەوەی جوانتر بێت */
+            background: rgba(0, 0, 0, 0.6); 
             z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s ease;
         }
         .panel-overlay.show { opacity: 1; visibility: visible; }
@@ -72,11 +77,15 @@
         @media(max-width: 1023px) {
             .side-panel {
                 position: fixed; top: 0; bottom: 0; width: 320px; max-width: 85vw;
-                z-index: 1005; /* زۆر بەرز بۆ ئەوەی لەسەروو هەموو شتێکەوە بێت */
-                background: #f8fbff; /* باکگراوندی ڕوون و سادە لەبری شوشەیی بۆ چارەسەری کێشەی ئایفۆن */
-                padding: 25px 20px; 
-                overflow-y: auto; /* ڕێگەدان بە سکڕۆڵ */
-                -webkit-overflow-scrolling: touch; /* زۆر گرنگە بۆ سکڕۆڵی نەرم لە ئایفۆن */
+                /* چارەسەری کێشەی سکڕۆڵ و شاشەی مۆبایل لێرەدایە */
+                height: 100vh; height: 100dvh; 
+                z-index: 1005; 
+                background: #f8fbff; 
+                padding: 25px 20px 60px 20px; /* 60px بۆشایی خوارەوە بۆ ئەوەی دانەپۆشرێت */
+                overflow-y: auto !important; 
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch; /* سکڕۆڵی نەرم بۆ ئایفۆن */
+                overscroll-behavior-y: contain; /* ڕێگری لە تێکەڵبوونی سکڕۆڵ */
                 transition: transform 0.35s ease-out;
                 box-shadow: 0 0 25px rgba(0,0,0,0.15);
             }
@@ -97,7 +106,7 @@
                 width: 100%; padding: 14px; margin-bottom: 20px; border-radius: 12px;
                 background: #fff0f0; color: #e74c3c; border: 1px solid #ffd6d6;
                 font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px; font-weight: 800;
-                cursor: pointer; transition: 0.2s;
+                cursor: pointer; transition: 0.2s; flex-shrink: 0;
             }
             .mobile-close-btn:active { transform: scale(0.96); background: #ffe4e4; }
         }
@@ -485,14 +494,14 @@
     function openPanel(panelId) {
         document.getElementById(panelId).classList.add('open');
         document.getElementById('panelOverlay').classList.add('show');
-        document.body.style.overflow = 'hidden'; 
+        document.body.classList.add('no-scroll'); // ڕێگریکردن لە سکڕۆڵی پشتی شاشەکە
     }
 
     function closeAllPanels() {
         document.getElementById('panel-stats').classList.remove('open');
         document.getElementById('panel-notes').classList.remove('open');
         document.getElementById('panelOverlay').classList.remove('show');
-        document.body.style.overflow = 'auto'; 
+        document.body.classList.remove('no-scroll'); // ئاساییکردنەوەی سکڕۆڵ
     }
 
     /* کۆدی هەژمارکردنەکە */

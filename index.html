@@ -38,7 +38,7 @@
         .shell {
             width: 100%; 
             max-width: 1550px; 
-            position: relative; z-index: 1;
+            position: relative; z-index: 1; /* پەیکەری سەرەکی */
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
@@ -62,7 +62,7 @@
             box-shadow:0 2px 0 rgba(255,255,255,0.85) inset,0 -1px 0 rgba(0,0,0,0.03) inset,0 16px 48px rgba(100,130,200,0.1),0 4px 16px rgba(0,0,0,0.05);
         }
 
-        /* ── MOBILE OVERLAY (شاشە تاریکەکە) ── */
+        /* ── MOBILE OVERLAY (شاشە تاریکەکە براوەتە ناوەوەی شێڵ) ── */
         .panel-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.6); 
@@ -77,23 +77,20 @@
         @media(max-width: 1023px) {
             .side-panel {
                 position: fixed; top: 0; bottom: 0; width: 320px; max-width: 85vw;
-                /* چارەسەری کێشەی سکڕۆڵ و شاشەی مۆبایل لێرەدایە */
                 height: 100vh; height: 100dvh; 
-                z-index: 1005; 
+                z-index: 1005; /* زۆر بەرز بۆ ئەوەی لەسەروو overlay بێت */
                 background: #f8fbff; 
-                padding: 25px 20px 60px 20px; /* 60px بۆشایی خوارەوە بۆ ئەوەی دانەپۆشرێت */
+                padding: 25px 20px 60px 20px; 
                 overflow-y: auto !important; 
                 overflow-x: hidden;
-                -webkit-overflow-scrolling: touch; /* سکڕۆڵی نەرم بۆ ئایفۆن */
-                overscroll-behavior-y: contain; /* ڕێگری لە تێکەڵبوونی سکڕۆڵ */
+                -webkit-overflow-scrolling: touch; 
+                overscroll-behavior-y: contain; 
                 transition: transform 0.35s ease-out;
                 box-shadow: 0 0 25px rgba(0,0,0,0.15);
             }
-            /* پانێڵی ڕاست (ئامارەکان) */
             #panel-stats { right: 0; transform: translateX(100%); border-left: none; }
             #panel-stats.open { transform: translateX(0); }
             
-            /* پانێڵی چەپ (تێبینییەکان) */
             #panel-notes { left: 0; transform: translateX(-100%); border-right: none; }
             #panel-notes.open { transform: translateX(0); }
         }
@@ -259,9 +256,9 @@
 </head>
 <body>
 
-<div class="panel-overlay" id="panelOverlay" onclick="closeAllPanels()"></div>
-
 <div class="shell">
+
+    <div class="panel-overlay" id="panelOverlay" onclick="closeAllPanels()"></div>
 
     <aside class="side-panel" id="panel-stats" style="direction:rtl;">
         
@@ -434,7 +431,7 @@
 
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-b">👤</span>دەربارەی دروستکەر</div>
-                <div class="dev-name">پەیڕەو</div>
+                <div class="dev-name">[ ناوی خۆت ]</div>
                 <div class="dev-role">Electrical &amp; AI Developer · کوردستان، عێراق</div>
                 <div class="dev-desc">ئەم پڕۆژەیە وەک بەشێک لە خەباتی خوێندنی زانستی کارەبا دروستکراوە. ئامانجەکە بەکارهێنانی هوشی دەستکرد بۆ ئاسانکردنی کارەکانی دیزاینی تۆڕی کارەبایە.</div>
             </div>
@@ -475,7 +472,7 @@
             <div class="copyright">
                 <span>© <span id="yr"></span></span>
                 <span class="cdot">·</span>
-                <span>پەیڕەو</span>
+                <span>[ ناوی خۆت ]</span>
                 <span class="cdot">·</span>
                 <span>هەموو مافەکان پارێزراوە</span>
             </div>
@@ -494,14 +491,14 @@
     function openPanel(panelId) {
         document.getElementById(panelId).classList.add('open');
         document.getElementById('panelOverlay').classList.add('show');
-        document.body.classList.add('no-scroll'); // ڕێگریکردن لە سکڕۆڵی پشتی شاشەکە
+        document.body.classList.add('no-scroll'); 
     }
 
     function closeAllPanels() {
         document.getElementById('panel-stats').classList.remove('open');
         document.getElementById('panel-notes').classList.remove('open');
         document.getElementById('panelOverlay').classList.remove('show');
-        document.body.classList.remove('no-scroll'); // ئاساییکردنەوەی سکڕۆڵ
+        document.body.classList.remove('no-scroll'); 
     }
 
     /* کۆدی هەژمارکردنەکە */

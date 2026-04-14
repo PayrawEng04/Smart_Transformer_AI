@@ -109,7 +109,6 @@
         @media(min-width:768px){
             .main-col {
                 display:grid; grid-template-columns:1fr 1fr;
-                /* گۆڕانکاری گرنگ: eval هەردوو ستوونەکەی گرتووە ڕێک وەک header */
                 grid-template-areas: 
                     "header header" 
                     "eval eval" 
@@ -118,7 +117,7 @@
                 gap: 1.5vw; align-items:start;
             }
             .header-card { grid-area:header; }
-            .eval-trigger { grid-area:eval; } /* ئەم بەشە ئێستا بە پانی لاپتۆپەکە دەبێت */
+            .eval-trigger { grid-area:eval; } 
             .desc-card   { grid-area:desc; }
             .form-card   { grid-area:form; position:sticky; top:32px; }
             .result-card { grid-area:results; }
@@ -228,6 +227,7 @@
 
     <aside class="side-panel" id="panel-stats" style="direction:rtl;">
         <button class="mobile-close-btn" onclick="closeAllPanels()">✖ داخستنی پانێڵ</button>
+        
         <div class="glass side-widget">
             <div class="sw-title">ئامارە خێراکان</div>
             <div class="stat-row"><span class="stat-label">تایپی مۆدێل</span><span class="sbadge sb">ML / AI</span></div>
@@ -236,6 +236,7 @@
             <div class="stat-row"><span class="stat-label">وەرزون</span><span class="sbadge sa">v 1.0</span></div>
             <div class="stat-row"><span class="stat-label">بار API</span><span class="sbadge sg">ئەکتیڤ</span></div>
         </div>
+        
         <div class="glass side-widget">
             <div class="sw-title">چۆن کاردەکات</div>
             <div class="tip-item"><div class="tip-icon ti-b" style="font-style:normal;">①</div><div class="tip-text">زانیاری گەڕەکەکە داخڵ بکە</div></div>
@@ -243,6 +244,23 @@
             <div class="tip-item"><div class="tip-icon ti-g" style="font-style:normal;">③</div><div class="tip-text">باری کارەبا پێشبینی دەکرێت</div></div>
             <div class="tip-item"><div class="tip-icon ti-a" style="font-style:normal;">④</div><div class="tip-text">باشترین محەویلە پێشنیار دەدرێت</div></div>
         </div>
+
+        <div class="glass side-widget">
+            <div class="sw-title">ئاستی باوەڕپێکراوی</div>
+            <div class="prog-wrap">
+                <div class="prog-head"><span class="prog-name">ماڵەکان</span><span class="prog-pct" style="color:#3a6fe8;">98%</span></div>
+                <div class="prog-bar"><div class="prog-fill" style="width:98%;background:linear-gradient(90deg,#6a9fff,#4070e8);"></div></div>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-head"><span class="prog-name">ڕووبەر</span><span class="prog-pct" style="color:#a78bfa;">95%</span></div>
+                <div class="prog-bar"><div class="prog-fill" style="width:95%;background:linear-gradient(90deg,#a78bfa,#7c55e8);"></div></div>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-head"><span class="prog-name">وەرز</span><span class="prog-pct" style="color:#2eaf7d;">96%</span></div>
+                <div class="prog-bar"><div class="prog-fill" style="width:96%;background:linear-gradient(90deg,#2eaf7d,#1a8a5a);"></div></div>
+            </div>
+        </div>
+
     </aside>
 
     <main class="main-col">
@@ -343,6 +361,7 @@
 
     <aside class="side-panel" id="panel-notes" style="direction:rtl;">
         <button class="mobile-close-btn" onclick="closeAllPanels()">✖ داخستنی پانێڵ</button>
+        
         <div class="glass side-widget">
             <div class="sw-title">تێبینییەکان</div>
             <div class="tip-item"><div class="tip-icon ti-b">💡</div><div class="tip-text">ژمارەی ماڵەکان کاریگەری زۆری هەیە لەسەر ئەنجامەکە</div></div>
@@ -350,6 +369,16 @@
             <div class="tip-item"><div class="tip-icon ti-g">📐</div><div class="tip-text">ڕووبەری زۆر بەرز باری تۆکمەی زۆر پێویست دەکات</div></div>
             <div class="tip-item"><div class="tip-icon ti-p">⚖️</div><div class="tip-text">ئاستی دەوڵەمەندی گەڕەک کاریگەرییەکی گەورەی هەیە</div></div>
         </div>
+
+        <div class="glass side-widget">
+            <div class="sw-title">تەکنەلۆژیاکان</div>
+            <div class="tech-row"><span class="tech-name">Python / Flask</span><div class="tech-dot"></div></div>
+            <div class="tech-row"><span class="tech-name">Scikit-learn</span><div class="tech-dot" style="background:linear-gradient(135deg,#f59e0b,#ef4444);"></div></div>
+            <div class="tech-row"><span class="tech-name">Render Cloud</span><div class="tech-dot" style="background:linear-gradient(135deg,#2eaf7d,#059669);"></div></div>
+            <div class="tech-row"><span class="tech-name">REST API / JSON</span><div class="tech-dot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);"></div></div>
+            <div class="tech-row"><span class="tech-name">HTML / CSS / JS</span><div class="tech-dot" style="background:linear-gradient(135deg,#fb923c,#f43f5e);"></div></div>
+        </div>
+
         <div class="glass side-widget">
             <div class="sw-title">ستانداردی محەویلەکان</div>
             <div class="stat-row"><span class="stat-label">بچووک</span><span class="sbadge sg">25 kVA</span></div>
@@ -363,6 +392,7 @@
 <footer class="footer">
     <div class="footer-glass">
         <div class="footer-grid">
+            
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-b">👤</span>دەربارەی دروستکەر</div>
                 <div class="dev-name">پەیڕەو</div>
@@ -373,9 +403,7 @@
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-g">🔗</span>بەستەرە گرنگەکان</div>
                 <a href="https://github.com/YOUR-USERNAME" target="_blank" class="fl-row">
-                    <div class="fl-ico" style="background:rgba(30,40,55,0.1);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="#1e2837"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                    </div>
+                    <div class="fl-ico" style="background:rgba(30,40,55,0.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#1e2837"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
                     <span class="fl-label">GitHub Profile</span><span class="fl-arrow">↗</span>
                 </a>
                 <a href="https://smart-transformer-ai-payraweng04.onrender.com" target="_blank" class="fl-row">
@@ -392,30 +420,22 @@
                 </a>
             </div>
 
-
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-p">⚡</span>زانیاری پڕۆژە</div>
                 <div class="stat-row"><span class="stat-label">وەرزەکە</span><span class="sbadge sb">v 1.0.0</span></div>
                 <div class="stat-row"><span class="stat-label">بارکردنی API</span><span class="sbadge sg">Render</span></div>
-                <div class="stat-row"><span class="stat-label">مۆدێلی AI</span><span class="sbadge sp">ML Regressor</span></div>
+                <div class="stat-row"><span class="stat-label">مۆدێلی AI</span><span class="sbadge sp">Random Forest</span></div>
                 <div class="stat-row"><span class="stat-label">ڕووکار</span><span class="sbadge sa">Glass UI</span></div>
             </div>
-
         </div>
 
         <div class="footer-bottom">
-            <div class="copyright">
-                <span>© <span id="yr"></span></span>
-                <span class="cdot">·</span>
-                <span>پەیڕەو</span>
-                <span class="cdot">·</span>
-                <span>هەموو مافەکان پارێزراوە</span>
-            </div>
+            <div class="copyright"><span>© <span id="yr"></span></span><span class="cdot">·</span><span>پەیڕەو</span><span class="cdot">·</span><span>هەموو مافەکان پارێزراوە</span></div>
             <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;">
                 <span class="f-badge fb-blue">⚡ AI-Powered</span>
                 <span class="f-badge fb-green">✓ Open Source</span>
             </div>
-
+        </div>
     </div>
 </footer>
 

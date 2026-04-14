@@ -109,12 +109,16 @@
         @media(min-width:768px){
             .main-col {
                 display:grid; grid-template-columns:1fr 1fr;
-                /* دانانی دوگمەی هەڵسەنگاندن لەسەرووی فۆڕمەکە */
-                grid-template-areas: "header header" "eval desc" "form desc" "form results";
+                /* گۆڕانکاری گرنگ: eval هەردوو ستوونەکەی گرتووە ڕێک وەک header */
+                grid-template-areas: 
+                    "header header" 
+                    "eval eval" 
+                    "desc form" 
+                    "results form";
                 gap: 1.5vw; align-items:start;
             }
             .header-card { grid-area:header; }
-            .eval-trigger { grid-area:eval; } /* شوێنی دوگمە نوێیەکە */
+            .eval-trigger { grid-area:eval; } /* ئەم بەشە ئێستا بە پانی لاپتۆپەکە دەبێت */
             .desc-card   { grid-area:desc; }
             .form-card   { grid-area:form; position:sticky; top:32px; }
             .result-card { grid-area:results; }
@@ -131,14 +135,14 @@
         .m-btn { flex: 1; padding: 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.9); background: linear-gradient(145deg, rgba(255,255,255,0.8), rgba(245,250,255,0.5)); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 14px; font-weight: 800; color: #3a6fe8; cursor: pointer; box-shadow: 0 4px 15px rgba(91,143,255,0.1); display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
         .m-btn:active { transform: scale(0.96); } .m-btn.btn-notes { color: #9a6000; box-shadow: 0 4px 15px rgba(255,176,32,0.15); }
 
-        /* ── MODEL EVALUATION BUTTON (دوگمە نوێیەکە) ── */
+        /* ── MODEL EVALUATION BUTTON ── */
         .btn-eval-trigger {
             width: 100%; padding: 16px; border-radius: 18px; border: 1px solid rgba(160,100,240,0.4);
             background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,230,255,0.9));
             font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15.5px; font-weight: 800; color: #6a28b0;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
             box-shadow: 0 6px 20px rgba(160,100,240,0.15), 0 1px 0 rgba(255,255,255,1) inset;
-            transition: transform 0.2s, box-shadow 0.2s; margin-bottom: -5px;
+            transition: transform 0.2s, box-shadow 0.2s; 
         }
         .btn-eval-trigger:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(160,100,240,0.25); }
         .btn-eval-trigger:active { transform: scale(0.98); }
@@ -177,7 +181,7 @@
         .footer-bottom { border-top:1px solid rgba(180,190,220,0.2);padding-top:20px; display:flex;flex-direction:column;gap:15px;align-items:center;text-align:center; } @media(min-width:600px){ .footer-bottom { flex-direction:row;justify-content:space-between;text-align:right; } }
         .copyright { font-size:14px;color:#8a96b0;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center; } .cdot { color:#c0c8da; } .f-badge { display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:800; } .fb-blue { background:rgba(91,143,255,0.08);border:1px solid rgba(91,143,255,.2);color:#3a6fe8; } .fb-green { background:rgba(46,175,125,0.08);border:1px solid rgba(46,175,125,.25); color:#1a7a52; }
 
-        /* ── MODEL EVALUATION MODAL (شاشەی هەڵسەنگاندن) ── */
+        /* ── MODEL EVALUATION MODAL ── */
         .eval-modal-wrap {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -251,6 +255,12 @@
             </div>
         </div>
 
+        <div class="eval-trigger">
+            <button class="btn-eval-trigger" onclick="openEvalModal()">
+                <span class="eval-icon">📈</span> پیشاندانی هەڵسەنگاندنی مۆدێل (Model Evaluation)
+            </button>
+        </div>
+
         <div class="mobile-toggles">
             <button class="m-btn" onclick="openPanel('panel-stats')">📊 ئامارەکان</button>
             <button class="m-btn btn-notes" onclick="openPanel('panel-notes')">💡 تێبینییەکان</button>
@@ -264,12 +274,6 @@
             <div class="desc-body">
                 ئەم سیستەمە پشت دەبەستێت بە ئەلگۆریزمی <strong>Random Forest Regressor</strong> بۆ شیکردنەوەی داتای گەڕەکەکان. لە ڕێگەی هەژمارکردنی فاکتەرەکانی وەک ژمارەی ماڵەکان، تێکڕای ڕووبەر، ئاستی بژێوی و گۆڕانکارییە وەرزيیەکانەوە، سیستەمەکە دەتوانێت باری کارەبایی پێشبینی بکات (Peak Load) و بە شێوەیەکی زیرەکانە باشترین قەبارەی محەویلە دیاری بکات بەپێی ستانداردە ئەندازیارییەکان.
             </div>
-        </div>
-
-        <div class="eval-trigger">
-            <button class="btn-eval-trigger" onclick="openEvalModal()">
-                <span class="eval-icon">📈</span> پیشاندانی هەڵسەنگاندنی مۆدێل (Model Evaluation)
-            </button>
         </div>
 
         <div class="glass form-card">

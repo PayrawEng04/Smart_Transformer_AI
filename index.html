@@ -22,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* ئەم کڵاسە لەلایەن جاڤاسکریپتەوە زیاد دەکرێت بۆ ڕاگرتنی سکڕۆڵی پشتەوە */
         body.no-scroll {
             overflow: hidden;
         }
@@ -38,7 +37,7 @@
         .shell {
             width: 100%; 
             max-width: 1550px; 
-            position: relative; z-index: 1; /* پەیکەری سەرەکی */
+            position: relative; z-index: 1;
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
@@ -62,7 +61,7 @@
             box-shadow:0 2px 0 rgba(255,255,255,0.85) inset,0 -1px 0 rgba(0,0,0,0.03) inset,0 16px 48px rgba(100,130,200,0.1),0 4px 16px rgba(0,0,0,0.05);
         }
 
-        /* ── MOBILE OVERLAY (شاشە تاریکەکە براوەتە ناوەوەی شێڵ) ── */
+        /* ── MOBILE OVERLAY ── */
         .panel-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.6); 
@@ -71,14 +70,14 @@
         .panel-overlay.show { opacity: 1; visibility: visible; }
         @media(min-width: 1024px) { .panel-overlay { display: none !important; } }
 
-        /* ── SIDE PANELS (بۆ مۆبایل و لاپتۆپ) ── */
+        /* ── SIDE PANELS ── */
         .side-panel { display:flex; flex-direction:column; gap:18px; padding-top:2px; }
         
         @media(max-width: 1023px) {
             .side-panel {
                 position: fixed; top: 0; bottom: 0; width: 320px; max-width: 85vw;
                 height: 100vh; height: 100dvh; 
-                z-index: 1005; /* زۆر بەرز بۆ ئەوەی لەسەروو overlay بێت */
+                z-index: 1005; 
                 background: #f8fbff; 
                 padding: 25px 20px 60px 20px; 
                 overflow-y: auto !important; 
@@ -95,7 +94,6 @@
             #panel-notes.open { transform: translateX(0); }
         }
 
-        /* دوگمەی داخستن بۆ ناو پانێڵەکان لە مۆبایل */
         .mobile-close-btn { display: none; }
         @media(max-width: 1023px) {
             .mobile-close-btn {
@@ -151,7 +149,11 @@
             .main-col {
                 display:grid;
                 grid-template-columns:1fr 1fr;
-                grid-template-areas: "header header" "form desc" "form results";
+                /* لێرەدا ڕیزبەندییە ئەندازیارییەکەی لاپتۆپ جێگیر کراوە */
+                grid-template-areas: 
+                    "header header" 
+                    "form desc" 
+                    "form results";
                 gap: 1.5vw; align-items:start;
             }
             .header-card { grid-area:header; }
@@ -316,6 +318,16 @@
             <button class="m-btn btn-notes" onclick="openPanel('panel-notes')">💡 تێبینییەکان</button>
         </div>
 
+        <div class="glass desc-card">
+            <div class="section-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                لۆجیکی زیرەکی دەستکردەکە
+            </div>
+            <div class="desc-body">
+                ئەم سیستەمە پشت دەبەستێت بە ئەلگۆریزمی <strong>Random Forest Regressor</strong> بۆ شیکردنەوەی داتای گەڕەکەکان. لە ڕێگەی هەژمارکردنی فاکتەرەکانی وەک ژمارەی ماڵەکان، تێکڕای ڕووبەر، ئاستی بژێوی و گۆڕانکارییە وەرزيیەکانەوە، سیستەمەکە دەتوانێت باری کارەبایی پێشبینی بکات (Peak Load) و بە شێوەیەکی زیرەکانە باشترین قەبارەی محەویلە دیاری بکات بەپێی ستانداردە ئەندازیارییەکان.
+            </div>
+        </div>
+
         <div class="glass form-card">
             <div class="form-section-label">داخڵکردنی زانیارییەکان</div>
             <div class="form-group">
@@ -355,16 +367,6 @@
             <div class="loading" id="loadingText">
                 <div class="spinner"></div>
                 خەریکی شیکردنەوەی داتاکانە...
-            </div>
-        </div>
-
-        <div class="glass desc-card">
-            <div class="section-tag">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-                لۆجیکی زیرەکی دەستکردەکە
-            </div>
-            <div class="desc-body">
-                ئەم سیستەمە پشت دەبەستێت بە ئەلگۆریزمی <strong>Random Forest Regressor</strong> بۆ شیکردنەوەی داتای گەڕەکەکان. لە ڕێگەی هەژمارکردنی فاکتەرەکانی وەک ژمارەی ماڵەکان، تێکڕای ڕووبەر، ئاستی بژێوی و گۆڕانکارییە وەرزيیەکانەوە، سیستەمەکە دەتوانێت باری کارەبایی پێشبینی بکات (Peak Load) و بە شێوەیەکی زیرەکانە باشترین قەبارەی محەویلە دیاری بکات بەپێی ستانداردە ئەندازیارییەکان.
             </div>
         </div>
 

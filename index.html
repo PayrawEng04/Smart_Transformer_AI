@@ -60,7 +60,7 @@
         /* ── MOBILE OVERLAY (شاشە تاریکەکە) ── */
         .panel-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.6); /* ڕەشترمان کرد بۆ ئەوەی جوانتر بێت */
             z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s ease;
         }
         .panel-overlay.show { opacity: 1; visibility: visible; }
@@ -71,18 +71,22 @@
         
         @media(max-width: 1023px) {
             .side-panel {
-                position: fixed; top: 0; bottom: 0; width: 300px; max-width: 85vw;
-                z-index: 1000; background: rgba(245, 250, 255, 0.95);
-                backdrop-filter: blur(25px); padding: 20px; overflow-y: auto;
-                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                position: fixed; top: 0; bottom: 0; width: 320px; max-width: 85vw;
+                z-index: 1005; /* زۆر بەرز بۆ ئەوەی لەسەروو هەموو شتێکەوە بێت */
+                background: #f8fbff; /* باکگراوندی ڕوون و سادە لەبری شوشەیی بۆ چارەسەری کێشەی ئایفۆن */
+                padding: 25px 20px; 
+                overflow-y: auto; /* ڕێگەدان بە سکڕۆڵ */
+                -webkit-overflow-scrolling: touch; /* زۆر گرنگە بۆ سکڕۆڵی نەرم لە ئایفۆن */
+                transition: transform 0.35s ease-out;
+                box-shadow: 0 0 25px rgba(0,0,0,0.15);
             }
             /* پانێڵی ڕاست (ئامارەکان) */
-            #panel-stats { right: 0; transform: translateX(100%); border-left: 1px solid rgba(255,255,255,0.6); }
-            #panel-stats.open { transform: translateX(0); box-shadow: -15px 0 40px rgba(0,0,0,0.15); }
+            #panel-stats { right: 0; transform: translateX(100%); border-left: none; }
+            #panel-stats.open { transform: translateX(0); }
             
             /* پانێڵی چەپ (تێبینییەکان) */
-            #panel-notes { left: 0; transform: translateX(-100%); border-right: 1px solid rgba(255,255,255,0.6); }
-            #panel-notes.open { transform: translateX(0); box-shadow: 15px 0 40px rgba(0,0,0,0.15); }
+            #panel-notes { left: 0; transform: translateX(-100%); border-right: none; }
+            #panel-notes.open { transform: translateX(0); }
         }
 
         /* دوگمەی داخستن بۆ ناو پانێڵەکان لە مۆبایل */
@@ -90,12 +94,12 @@
         @media(max-width: 1023px) {
             .mobile-close-btn {
                 display: flex; align-items: center; justify-content: center; gap: 8px;
-                width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px;
-                background: #ffeaea; color: #e74c3c; border: 1px solid #ffcdcd;
-                font-family: 'Noto Kufi Arabic', sans-serif; font-size: 14px; font-weight: 700;
+                width: 100%; padding: 14px; margin-bottom: 20px; border-radius: 12px;
+                background: #fff0f0; color: #e74c3c; border: 1px solid #ffd6d6;
+                font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px; font-weight: 800;
                 cursor: pointer; transition: 0.2s;
             }
-            .mobile-close-btn:active { transform: scale(0.97); }
+            .mobile-close-btn:active { transform: scale(0.96); background: #ffe4e4; }
         }
 
         .side-widget { padding:22px 20px; }
@@ -481,14 +485,14 @@
     function openPanel(panelId) {
         document.getElementById(panelId).classList.add('open');
         document.getElementById('panelOverlay').classList.add('show');
-        document.body.style.overflow = 'hidden'; // ڕێگریکردن لە سکڕۆڵی شاشەی پشتەوە
+        document.body.style.overflow = 'hidden'; 
     }
 
     function closeAllPanels() {
         document.getElementById('panel-stats').classList.remove('open');
         document.getElementById('panel-notes').classList.remove('open');
         document.getElementById('panelOverlay').classList.remove('show');
-        document.body.style.overflow = 'auto'; // ئاساییکردنەوەی سکڕۆڵ
+        document.body.style.overflow = 'auto'; 
     }
 
     /* کۆدی هەژمارکردنەکە */

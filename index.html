@@ -109,11 +109,7 @@
         @media(min-width:768px){
             .main-col {
                 display:grid; grid-template-columns:1fr 1fr;
-                grid-template-areas: 
-                    "header header" 
-                    "eval eval" 
-                    "desc form" 
-                    "results form";
+                grid-template-areas: "header header" "eval eval" "desc form" "results form";
                 gap: 1.5vw; align-items:start;
             }
             .header-card { grid-area:header; }
@@ -134,18 +130,8 @@
         .m-btn { flex: 1; padding: 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.9); background: linear-gradient(145deg, rgba(255,255,255,0.8), rgba(245,250,255,0.5)); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 14px; font-weight: 800; color: #3a6fe8; cursor: pointer; box-shadow: 0 4px 15px rgba(91,143,255,0.1); display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
         .m-btn:active { transform: scale(0.96); } .m-btn.btn-notes { color: #9a6000; box-shadow: 0 4px 15px rgba(255,176,32,0.15); }
 
-        /* ── MODEL EVALUATION BUTTON ── */
-        .btn-eval-trigger {
-            width: 100%; padding: 16px; border-radius: 18px; border: 1px solid rgba(160,100,240,0.4);
-            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,230,255,0.9));
-            font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15.5px; font-weight: 800; color: #6a28b0;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-            box-shadow: 0 6px 20px rgba(160,100,240,0.15), 0 1px 0 rgba(255,255,255,1) inset;
-            transition: transform 0.2s, box-shadow 0.2s; 
-        }
-        .btn-eval-trigger:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(160,100,240,0.25); }
-        .btn-eval-trigger:active { transform: scale(0.98); }
-        .eval-icon { font-size: 20px; }
+        .btn-eval-trigger { width: 100%; padding: 16px; border-radius: 18px; border: 1px solid rgba(160,100,240,0.4); background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,230,255,0.9)); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15.5px; font-weight: 800; color: #6a28b0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 6px 20px rgba(160,100,240,0.15), 0 1px 0 rgba(255,255,255,1) inset; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-eval-trigger:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(160,100,240,0.25); } .btn-eval-trigger:active { transform: scale(0.98); } .eval-icon { font-size: 20px; }
 
         .desc-card { padding: 22px; }
         .section-tag { display:inline-flex;align-items:center;gap:6px; background:rgba(91,143,255,0.1);border:1px solid rgba(91,143,255,0.2); border-radius:20px;padding:4px 12px;font-size:12px;font-weight:800;color:#3a6fe8; letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px; }
@@ -180,7 +166,7 @@
         .footer-bottom { border-top:1px solid rgba(180,190,220,0.2);padding-top:20px; display:flex;flex-direction:column;gap:15px;align-items:center;text-align:center; } @media(min-width:600px){ .footer-bottom { flex-direction:row;justify-content:space-between;text-align:right; } }
         .copyright { font-size:14px;color:#8a96b0;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center; } .cdot { color:#c0c8da; } .f-badge { display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:800; } .fb-blue { background:rgba(91,143,255,0.08);border:1px solid rgba(91,143,255,.2);color:#3a6fe8; } .fb-green { background:rgba(46,175,125,0.08);border:1px solid rgba(46,175,125,.25); color:#1a7a52; }
 
-        /* ── MODEL EVALUATION MODAL ── */
+        /* ── MODEL EVALUATION MODAL (شاشەی هەڵسەنگاندن گەورەتر کرا) ── */
         .eval-modal-wrap {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -190,7 +176,7 @@
         .eval-modal-wrap.show { opacity: 1; visibility: visible; }
         
         .eval-modal-content {
-            background: #fff; width: 100%; max-width: 900px; max-height: 90vh;
+            background: #fff; width: 100%; max-width: 1050px; /* گەورەتر کرا بۆ ٤ گڕاف */ max-height: 90vh;
             border-radius: 24px; padding: 30px; position: relative;
             overflow-y: auto; -webkit-overflow-scrolling: touch;
             box-shadow: 0 20px 60px rgba(0,0,0,0.2); transform: translateY(20px) scale(0.95); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -200,7 +186,7 @@
         .eval-close {
             position: absolute; top: 20px; left: 20px; width: 36px; height: 36px;
             background: #f1f5f9; border: none; border-radius: 50%; font-size: 16px; color: #64748b;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; z-index: 10;
         }
         .eval-close:hover { background: #e2e8f0; color: #0f172a; transform: rotate(90deg); }
 
@@ -208,11 +194,13 @@
         .eval-title { font-size: 24px; font-weight: 900; color: #1e293b; margin-bottom: 5px; }
         .eval-subtitle { font-size: 14px; color: #64748b; font-weight: 600; }
 
-        .eval-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .eval-m-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 18px 15px; text-align: center; }
-        .em-val { font-size: 26px; font-weight: 900; color: #6a28b0; line-height: 1.1; margin-bottom: 5px; }
-        .em-lbl { font-size: 12px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        /* گۆڕانکاری: ٨ پێوەر لەبری ٤ */
+        .eval-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .eval-m-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 18px 10px; text-align: center; }
+        .em-val { font-size: 22px; font-weight: 900; color: #6a28b0; line-height: 1.1; margin-bottom: 5px; }
+        .em-lbl { font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         
+        /* گۆڕانکاری: ٤ گڕاف */
         .eval-charts-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
         @media(min-width: 768px) { .eval-charts-grid { grid-template-columns: 1fr 1fr; } }
         .chart-container { background: #fff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
@@ -227,7 +215,6 @@
 
     <aside class="side-panel" id="panel-stats" style="direction:rtl;">
         <button class="mobile-close-btn" onclick="closeAllPanels()">✖ داخستنی پانێڵ</button>
-        
         <div class="glass side-widget">
             <div class="sw-title">ئامارە خێراکان</div>
             <div class="stat-row"><span class="stat-label">تایپی مۆدێل</span><span class="sbadge sb">ML / AI</span></div>
@@ -236,7 +223,6 @@
             <div class="stat-row"><span class="stat-label">وەرزون</span><span class="sbadge sa">v 1.0</span></div>
             <div class="stat-row"><span class="stat-label">بار API</span><span class="sbadge sg">ئەکتیڤ</span></div>
         </div>
-        
         <div class="glass side-widget">
             <div class="sw-title">چۆن کاردەکات</div>
             <div class="tip-item"><div class="tip-icon ti-b" style="font-style:normal;">①</div><div class="tip-text">زانیاری گەڕەکەکە داخڵ بکە</div></div>
@@ -244,23 +230,12 @@
             <div class="tip-item"><div class="tip-icon ti-g" style="font-style:normal;">③</div><div class="tip-text">باری کارەبا پێشبینی دەکرێت</div></div>
             <div class="tip-item"><div class="tip-icon ti-a" style="font-style:normal;">④</div><div class="tip-text">باشترین محەویلە پێشنیار دەدرێت</div></div>
         </div>
-
         <div class="glass side-widget">
             <div class="sw-title">ئاستی باوەڕپێکراوی</div>
-            <div class="prog-wrap">
-                <div class="prog-head"><span class="prog-name">ماڵەکان</span><span class="prog-pct" style="color:#3a6fe8;">98%</span></div>
-                <div class="prog-bar"><div class="prog-fill" style="width:98%;background:linear-gradient(90deg,#6a9fff,#4070e8);"></div></div>
-            </div>
-            <div class="prog-wrap">
-                <div class="prog-head"><span class="prog-name">ڕووبەر</span><span class="prog-pct" style="color:#a78bfa;">95%</span></div>
-                <div class="prog-bar"><div class="prog-fill" style="width:95%;background:linear-gradient(90deg,#a78bfa,#7c55e8);"></div></div>
-            </div>
-            <div class="prog-wrap">
-                <div class="prog-head"><span class="prog-name">وەرز</span><span class="prog-pct" style="color:#2eaf7d;">96%</span></div>
-                <div class="prog-bar"><div class="prog-fill" style="width:96%;background:linear-gradient(90deg,#2eaf7d,#1a8a5a);"></div></div>
-            </div>
+            <div class="prog-wrap"><div class="prog-head"><span class="prog-name">ماڵەکان</span><span class="prog-pct" style="color:#3a6fe8;">98%</span></div><div class="prog-bar"><div class="prog-fill" style="width:98%;background:linear-gradient(90deg,#6a9fff,#4070e8);"></div></div></div>
+            <div class="prog-wrap"><div class="prog-head"><span class="prog-name">ڕووبەر</span><span class="prog-pct" style="color:#a78bfa;">95%</span></div><div class="prog-bar"><div class="prog-fill" style="width:95%;background:linear-gradient(90deg,#a78bfa,#7c55e8);"></div></div></div>
+            <div class="prog-wrap"><div class="prog-head"><span class="prog-name">وەرز</span><span class="prog-pct" style="color:#2eaf7d;">96%</span></div><div class="prog-bar"><div class="prog-fill" style="width:96%;background:linear-gradient(90deg,#2eaf7d,#1a8a5a);"></div></div></div>
         </div>
-
     </aside>
 
     <main class="main-col">
@@ -285,10 +260,7 @@
         </div>
 
         <div class="glass desc-card">
-            <div class="section-tag">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-                لۆجیکی زیرەکی دەستکردەکە
-            </div>
+            <div class="section-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>لۆجیکی زیرەکی دەستکردەکە</div>
             <div class="desc-body">
                 ئەم سیستەمە پشت دەبەستێت بە ئەلگۆریزمی <strong>Random Forest Regressor</strong> بۆ شیکردنەوەی داتای گەڕەکەکان. لە ڕێگەی هەژمارکردنی فاکتەرەکانی وەک ژمارەی ماڵەکان، تێکڕای ڕووبەر، ئاستی بژێوی و گۆڕانکارییە وەرزيیەکانەوە، سیستەمەکە دەتوانێت باری کارەبایی پێشبینی بکات (Peak Load) و بە شێوەیەکی زیرەکانە باشترین قەبارەی محەویلە دیاری بکات بەپێی ستانداردە ئەندازیارییەکان.
             </div>
@@ -326,28 +298,14 @@
                 </div>
             </div>
             <div class="sep"></div>
-            <button class="btn-calc" onclick="calculateLoad()">
-                <span style="font-size:22px;">🧠</span>
-                هەژمارکردن بە AI
-            </button>
-            <div class="loading" id="loadingText">
-                <div class="spinner"></div>
-                خەریکی شیکردنەوەی داتاکانە...
-            </div>
+            <button class="btn-calc" onclick="calculateLoad()"><span style="font-size:22px;">🧠</span>هەژمارکردن بە AI</button>
+            <div class="loading" id="loadingText"><div class="spinner"></div>خەریکی شیکردنەوەی داتاکانە...</div>
         </div>
 
         <div class="glass result-card" id="resultBox">
             <div class="result-grid">
-                <div class="metric-pill">
-                    <div class="mpill-label">باری پێشبینیکراو</div>
-                    <div class="mpill-val" id="loadResult">—</div>
-                    <div class="mpill-unit">kVA</div>
-                </div>
-                <div class="metric-pill">
-                    <div class="mpill-label">ئەنجام</div>
-                    <div class="mpill-val" style="color:#2eaf7d;">✓</div>
-                    <div class="mpill-unit">سەرکەوتوو</div>
-                </div>
+                <div class="metric-pill"><div class="mpill-label">باری پێشبینیکراو</div><div class="mpill-val" id="loadResult">—</div><div class="mpill-unit">kVA</div></div>
+                <div class="metric-pill"><div class="mpill-label">ئەنجام</div><div class="mpill-val" style="color:#2eaf7d;">✓</div><div class="mpill-unit">سەرکەوتوو</div></div>
             </div>
             <div class="tf-card">
                 <div class="tf-pill">✦ باشترین هەڵبژاردن</div>
@@ -361,7 +319,6 @@
 
     <aside class="side-panel" id="panel-notes" style="direction:rtl;">
         <button class="mobile-close-btn" onclick="closeAllPanels()">✖ داخستنی پانێڵ</button>
-        
         <div class="glass side-widget">
             <div class="sw-title">تێبینییەکان</div>
             <div class="tip-item"><div class="tip-icon ti-b">💡</div><div class="tip-text">ژمارەی ماڵەکان کاریگەری زۆری هەیە لەسەر ئەنجامەکە</div></div>
@@ -369,7 +326,6 @@
             <div class="tip-item"><div class="tip-icon ti-g">📐</div><div class="tip-text">ڕووبەری زۆر بەرز باری تۆکمەی زۆر پێویست دەکات</div></div>
             <div class="tip-item"><div class="tip-icon ti-p">⚖️</div><div class="tip-text">ئاستی دەوڵەمەندی گەڕەک کاریگەرییەکی گەورەی هەیە</div></div>
         </div>
-
         <div class="glass side-widget">
             <div class="sw-title">تەکنەلۆژیاکان</div>
             <div class="tech-row"><span class="tech-name">Python / Flask</span><div class="tech-dot"></div></div>
@@ -378,7 +334,6 @@
             <div class="tech-row"><span class="tech-name">REST API / JSON</span><div class="tech-dot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);"></div></div>
             <div class="tech-row"><span class="tech-name">HTML / CSS / JS</span><div class="tech-dot" style="background:linear-gradient(135deg,#fb923c,#f43f5e);"></div></div>
         </div>
-
         <div class="glass side-widget">
             <div class="sw-title">ستانداردی محەویلەکان</div>
             <div class="stat-row"><span class="stat-label">بچووک</span><span class="sbadge sg">25 kVA</span></div>
@@ -392,34 +347,18 @@
 <footer class="footer">
     <div class="footer-glass">
         <div class="footer-grid">
-            
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-b">👤</span>دەربارەی دروستکەر</div>
                 <div class="dev-name">پەیڕەو</div>
                 <div class="dev-role">Electrical &amp; AI Developer · کوردستان، عێراق</div>
                 <div class="dev-desc">ئەم پڕۆژەیە وەک بەشێک لە خەباتی خوێندنی زانستی کارەبا دروستکراوە. ئامانجەکە بەکارهێنانی هوشی دەستکرد بۆ ئاسانکردنی کارەکانی دیزاینی تۆڕی کارەبایە.</div>
             </div>
-            
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-g">🔗</span>بەستەرە گرنگەکان</div>
-                <a href="https://github.com/YOUR-USERNAME" target="_blank" class="fl-row">
-                    <div class="fl-ico" style="background:rgba(30,40,55,0.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#1e2837"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div>
-                    <span class="fl-label">GitHub Profile</span><span class="fl-arrow">↗</span>
-                </a>
-                <a href="https://smart-transformer-ai-payraweng04.onrender.com" target="_blank" class="fl-row">
-                    <div class="fl-ico" style="background:rgba(46,175,125,0.12);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1a7a52" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    </div>
-                    <span class="fl-label">Live API — Render</span><span class="fl-arrow">↗</span>
-                </a>
-                <a href="mailto:your@email.com" class="fl-row">
-                    <div class="fl-ico" style="background:rgba(160,100,240,0.1);">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6a28b0" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <span class="fl-label">پەیوەندی کردن</span><span class="fl-arrow">↗</span>
-                </a>
+                <a href="https://github.com/YOUR-USERNAME" target="_blank" class="fl-row"><div class="fl-ico" style="background:rgba(30,40,55,0.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#1e2837"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></div><span class="fl-label">GitHub Profile</span><span class="fl-arrow">↗</span></a>
+                <a href="https://smart-transformer-ai-payraweng04.onrender.com" target="_blank" class="fl-row"><div class="fl-ico" style="background:rgba(46,175,125,0.12);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1a7a52" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="fl-label">Live API — Render</span><span class="fl-arrow">↗</span></a>
+                <a href="mailto:your@email.com" class="fl-row"><div class="fl-ico" style="background:rgba(160,100,240,0.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6a28b0" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="fl-label">پەیوەندی کردن</span><span class="fl-arrow">↗</span></a>
             </div>
-
             <div>
                 <div class="fcol-title"><span class="fcol-ico fi-p">⚡</span>زانیاری پڕۆژە</div>
                 <div class="stat-row"><span class="stat-label">وەرزەکە</span><span class="sbadge sb">v 1.0.0</span></div>
@@ -428,13 +367,9 @@
                 <div class="stat-row"><span class="stat-label">ڕووکار</span><span class="sbadge sa">Glass UI</span></div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <div class="copyright"><span>© <span id="yr"></span></span><span class="cdot">·</span><span>پەیڕەو</span><span class="cdot">·</span><span>هەموو مافەکان پارێزراوە</span></div>
-            <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;">
-                <span class="f-badge fb-blue">⚡ AI-Powered</span>
-                <span class="f-badge fb-green">✓ Open Source</span>
-            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;"><span class="f-badge fb-blue">⚡ AI-Powered</span><span class="f-badge fb-green">✓ Open Source</span></div>
         </div>
     </div>
 </footer>
@@ -445,36 +380,36 @@
         
         <div class="eval-header">
             <div class="eval-title">هەڵسەنگاندنی مۆدێلی Random Forest</div>
-            <div class="eval-subtitle">پێوەرەکانی ڕاستی و دروستی و گرنگی تایبەتمەندییەکان لە ڕاهێنانی مۆدێلەکەدا</div>
+            <div class="eval-subtitle">پێوەرە زانستییەکان و شیکردنەوەی داتاکانی ڕاهێنانی مۆدێلەکە</div>
         </div>
 
         <div class="eval-metrics-grid">
-            <div class="eval-m-box">
-                <div class="em-val">98.5%</div>
-                <div class="em-lbl">R² Score</div>
-            </div>
-            <div class="eval-m-box">
-                <div class="em-val">12.4</div>
-                <div class="em-lbl">MAE (kVA)</div>
-            </div>
-            <div class="eval-m-box">
-                <div class="em-val">18.2</div>
-                <div class="em-lbl">RMSE (kVA)</div>
-            </div>
-            <div class="eval-m-box">
-                <div class="em-val">0.96</div>
-                <div class="em-lbl">Cross-Val</div>
-            </div>
+            <div class="eval-m-box"><div class="em-val">98.5%</div><div class="em-lbl">R² Score</div></div>
+            <div class="eval-m-box"><div class="em-val">12.4</div><div class="em-lbl">MAE (kVA)</div></div>
+            <div class="eval-m-box"><div class="em-val">18.2</div><div class="em-lbl">RMSE (kVA)</div></div>
+            <div class="eval-m-box"><div class="em-val">331.2</div><div class="em-lbl">MSE (kVA²)</div></div>
+            <div class="eval-m-box"><div class="em-val">0.96</div><div class="em-lbl">Cross-Val</div></div>
+            <div class="eval-m-box"><div class="em-val">4.1%</div><div class="em-lbl">MAPE</div></div>
+            <div class="eval-m-box"><div class="em-val">98.2%</div><div class="em-lbl">Exp. Variance</div></div>
+            <div class="eval-m-box"><div class="em-val">45.0</div><div class="em-lbl">Max Error</div></div>
         </div>
 
         <div class="eval-charts-grid">
             <div class="chart-container">
-                <div class="chart-title">گرنگی تایبەتمەندییەکان لە پێشبینیکردندا</div>
+                <div class="chart-title">گرنگی تایبەتمەندییەکان (Feature Importance)</div>
                 <canvas id="featureChart"></canvas>
             </div>
             <div class="chart-container">
-                <div class="chart-title">باری ڕاستەقینە بەرامبەر پێشبینیکراو (نموونە)</div>
-                <canvas id="predChart"></canvas>
+                <div class="chart-title">ڕاستەقینە بەرامبەر پێشبینیکراو (Trend)</div>
+                <canvas id="lineChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">پەرشوبڵاوی پێشبینی (Scatter Plot)</div>
+                <canvas id="scatterChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">دابەشبوونی هەڵەکان (Residual Distribution)</div>
+                <canvas id="barChart"></canvas>
             </div>
         </div>
     </div>
@@ -483,23 +418,15 @@
 <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    /* Panels Logic */
     function openPanel(panelId) { document.getElementById(panelId).classList.add('open'); document.getElementById('panelOverlay').classList.add('show'); document.body.classList.add('no-scroll'); }
     function closeAllPanels() { document.getElementById('panel-stats').classList.remove('open'); document.getElementById('panel-notes').classList.remove('open'); document.getElementById('panelOverlay').classList.remove('show'); document.body.classList.remove('no-scroll'); }
 
-    /* Modal Logic & Chart.js */
     let chartsRendered = false;
-    
     function openEvalModal() {
         document.getElementById('evalModal').classList.add('show');
         document.body.classList.add('no-scroll');
-        
-        if(!chartsRendered) {
-            renderCharts();
-            chartsRendered = true;
-        }
+        if(!chartsRendered) { renderCharts(); chartsRendered = true; }
     }
-
     function closeEvalModal() {
         document.getElementById('evalModal').classList.remove('show');
         document.body.classList.remove('no-scroll');
@@ -508,69 +435,79 @@
     function renderCharts() {
         Chart.defaults.font.family = "'Noto Kufi Arabic', sans-serif";
         
-        // Chart 1: Feature Importance (Doughnut)
-        const ctxFeat = document.getElementById('featureChart').getContext('2d');
-        new Chart(ctxFeat, {
+        // 1. Feature Importance (Doughnut)
+        new Chart(document.getElementById('featureChart').getContext('2d'), {
             type: 'doughnut',
             data: {
-                labels: ['ژمارەی ماڵەکان', 'ڕووبەر', 'ئاستی بژێوی', 'وەرز'],
+                labels: ['ماڵەکان', 'ڕووبەر', 'ئاستی بژێوی', 'وەرز'],
+                datasets: [{ data: [65, 20, 10, 5], backgroundColor: ['#6a9fff', '#a78bfa', '#2eaf7d', '#f59e0b'], borderWidth: 0 }]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } }, cutout: '65%' }
+        });
+
+        // 2. Line Chart (Trend)
+        new Chart(document.getElementById('lineChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['گ١', 'گ٢', 'گ٣', 'گ٤', 'گ٥', 'گ٦'],
+                datasets: [
+                    { label: 'ڕاستەقینە', data: [100, 250, 180, 400, 310, 550], borderColor: '#94a3b8', borderDash: [5, 5], tension: 0.3 },
+                    { label: 'پێشبینیکراو', data: [105, 245, 185, 390, 315, 540], borderColor: '#6a28b0', backgroundColor: 'rgba(106,40,176,0.1)', fill: true, tension: 0.3 }
+                ]
+            },
+            options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true } } }
+        });
+
+        // 3. Scatter Plot (پەرشوبڵاوی پێشبینی)
+        new Chart(document.getElementById('scatterChart').getContext('2d'), {
+            type: 'scatter',
+            data: {
                 datasets: [{
-                    data: [65, 20, 10, 5],
-                    backgroundColor: ['#6a9fff', '#a78bfa', '#2eaf7d', '#f59e0b'],
-                    borderWidth: 0,
-                    hoverOffset: 4
+                    label: 'خاڵەکانی پێشبینی',
+                    data: [{x:100,y:105}, {x:250,y:245}, {x:180,y:185}, {x:400,y:390}, {x:310,y:315}, {x:550,y:540}, {x:220,y:225}, {x:480,y:470}, {x:150,y:158}],
+                    backgroundColor: '#3a6fe8',
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                },
+                {
+                    label: 'هێڵی نموونەیی (Ideal)',
+                    data: [{x:0,y:0}, {x:600,y:600}],
+                    type: 'line', borderColor: '#e2e8f0', borderDash: [5, 5], pointRadius: 0, fill: false
+                }]
+            },
+            options: { 
+                responsive: true, 
+                plugins: { legend: { position: 'bottom' } },
+                scales: { 
+                    x: { title: { display: true, text: 'باری ڕاستەقینە (kVA)' } }, 
+                    y: { title: { display: true, text: 'باری پێشبینیکراو (kVA)' } } 
+                } 
+            }
+        });
+
+        // 4. Bar Chart (دابەشبوونی هەڵەکان)
+        new Chart(document.getElementById('barChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['-20 kVA', '-10 kVA', '0 kVA (ورد)', '+10 kVA', '+20 kVA'],
+                datasets: [{
+                    label: 'ژمارەی دووبارەبوونەوە',
+                    data: [5, 15, 55, 18, 7],
+                    backgroundColor: '#2eaf7d',
+                    borderRadius: 6
                 }]
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: { position: 'bottom', labels: { padding: 20, font: { size: 12 } } }
-                },
-                cutout: '65%'
-            }
-        });
-
-        // Chart 2: Actual vs Predicted (Line)
-        const ctxPred = document.getElementById('predChart').getContext('2d');
-        new Chart(ctxPred, {
-            type: 'line',
-            data: {
-                labels: ['گ ١', 'گ ٢', 'گ ٣', 'گ ٤', 'گ ٥', 'گ ٦', 'گ ٧'],
-                datasets: [
-                    {
-                        label: 'ڕاستەقینە (Actual)',
-                        data: [100, 250, 180, 400, 310, 550, 220],
-                        borderColor: '#94a3b8',
-                        borderDash: [5, 5],
-                        tension: 0.3,
-                        pointRadius: 4
-                    },
-                    {
-                        label: 'پێشبینیکراو (AI)',
-                        data: [105, 245, 185, 390, 315, 540, 225],
-                        borderColor: '#6a28b0',
-                        backgroundColor: 'rgba(106, 40, 176, 0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 5,
-                        pointBackgroundColor: '#6a28b0'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } }
-                },
-                scales: {
-                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-                    x: { grid: { display: false } }
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, title: { display: true, text: 'ژمارەی جارەکان' } },
+                    x: { title: { display: true, text: 'بڕی هەڵە (Residuals)' } }
                 }
             }
         });
     }
 
-    /* API Calculation Logic */
     async function calculateLoad() {
         const houses = document.getElementById('housesInput').value;
         const area   = document.getElementById('areaInput').value;
@@ -581,7 +518,6 @@
         const resultBox = document.getElementById('resultBox');
 
         loadingEl.classList.add('show'); resultBox.style.display = 'none';
-
         const dataPacket = { houses:parseInt(houses), area:parseInt(area), status:status, season:season };
 
         try {

@@ -171,117 +171,77 @@
         .footer-bottom { border-top:1px solid rgba(180,190,220,0.2);padding-top:20px; display:flex;flex-direction:column;gap:15px;align-items:center;text-align:center; } @media(min-width:600px){ .footer-bottom { flex-direction:row;justify-content:space-between;text-align:right; } }
         .copyright { font-size:14px;color:#8a96b0;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center; } .cdot { color:#c0c8da; } .f-badge { display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:800; } .fb-blue { background:rgba(91,143,255,0.08);border:1px solid rgba(91,143,255,.2);color:#3a6fe8; } .fb-green { background:rgba(46,175,125,0.08);border:1px solid rgba(46,175,125,.25); color:#1a7a52; }
 
-        /* ── NEW MODEL EVALUATION MODAL (ڕێکخراو بۆ مۆبایل وەک پانێڵەکانی تر) ── */
-        
-        /* شاردنەوەی دوگمەی داخستنی مۆبایل لەسەر لاپتۆپ */
-        .eval-mobile-close { display: none; }
 
-        /* دیزاینی سەرەکی (لاپتۆپ) */
+        /* ── MODEL EVALUATION MODAL (یەکخراو بۆ لاپتۆپ و مۆبایل) ── */
+        
         .eval-modal-wrap {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 15px;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;
             opacity: 0; visibility: hidden; transition: 0.3s;
         }
         .eval-modal-wrap.show { opacity: 1; visibility: visible; }
-        
+
+        /* دیزاینی ناوەوەی هەڵسەنگاندن - ساف و بێ ئیفێکتی شووشە */
         .eval-modal-content {
-            background: rgba(255, 255, 255, 0.65); /* شووشەیی بۆ لاپتۆپ */
-            backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: #f8fbff;
             width: 100%; max-width: 1100px; max-height: 94vh;
-            border-radius: 28px; position: relative;
+            border-radius: 24px; position: relative;
             overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15); 
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3); 
             transform: translateY(20px) scale(0.95); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex; flex-direction: column;
+            padding: 30px;
         }
         .eval-modal-wrap.show .eval-modal-content { transform: translateY(0) scale(1); }
 
-        .eval-header {
-            padding: 25px 20px 20px; text-align: center; 
-            border-bottom: 1px solid rgba(180,190,220,0.2);
-            position: relative; flex-shrink: 0;
+        /* دوگمە سوورە گەورەکەی داخستن بۆ هەموو شاشەکان دەردەکەوێت */
+        .eval-main-close {
+            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-bottom: 25px; border-radius: 12px;
+            background: #fff0f0; color: #e74c3c; border: 1px solid #ffd6d6; font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px; font-weight: 800; cursor: pointer; transition: 0.2s; flex-shrink: 0;
         }
-        
-        .eval-close {
-            position: absolute; top: 20px; left: 20px; width: 40px; height: 40px;
-            background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9); border-radius: 50%; 
-            font-size: 16px; color: #e74c3c; cursor: pointer; display: flex; align-items: center; justify-content: center; 
-            transition: 0.2s; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .eval-close:hover { background: rgba(255,255,255,1); transform: rotate(90deg); }
+        .eval-main-close:active { transform: scale(0.96); background: #ffe4e4; }
 
-        .eval-title { font-size: 24px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; color: #1c2b4a; }
-        .eval-subtitle { font-size: 14px; color: #5a6a88; font-weight: 600; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+        .eval-header { text-align: center; margin-bottom: 30px; }
+        .eval-title { font-size: 26px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.5px; color: #1c2b4a; }
+        .eval-subtitle { font-size: 14.5px; color: #5a6a88; font-weight: 600; line-height: 1.6; max-width: 700px; margin: 0 auto; }
 
-        .eval-body { padding: 25px; flex-grow: 1; }
-
-        .eval-section { margin-bottom: 35px; background: rgba(255,255,255,0.4); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.7); }
+        /* بەشەکان */
+        .eval-section { margin-bottom: 35px; background: #ffffff; border-radius: 24px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         .eval-section-title {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,255,255,0.8); padding: 8px 18px; border-radius: 20px;
-            font-size: 14.5px; font-weight: 800; color: #3a6fe8; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.9);
-            box-shadow: 0 2px 10px rgba(91,143,255,0.05);
+            background: #f1f5f9; padding: 8px 18px; border-radius: 20px;
+            font-size: 14.5px; font-weight: 800; color: #3a6fe8; margin-bottom: 20px; border: 1px solid #e2e8f0;
         }
 
         .eval-metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .eval-m-box { background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9); border-radius: 18px; padding: 18px; text-align: right; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(91,143,255,0.05); }
-        .eval-m-box:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(91,143,255,0.1); }
+        .eval-m-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 20px; text-align: right; transition: transform 0.2s, box-shadow 0.2s; }
+        .eval-m-box:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(91,143,255,0.08); border-color: #cbd5e1; }
         .em-val { font-size: 26px; font-weight: 900; color: #3a6fe8; line-height: 1.1; margin-bottom: 5px; }
         .em-lbl { font-size: 12.5px; color: #1c2b4a; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-        .em-desc { font-size: 12px; color: #5a6a88; font-weight: 600; line-height: 1.6; border-top: 1px dashed rgba(180,190,220,0.3); padding-top: 8px; }
+        .em-desc { font-size: 12px; color: #5a6a88; font-weight: 600; line-height: 1.6; border-top: 1px dashed #e2e8f0; padding-top: 8px; }
         
         .eval-charts-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 900px) { .eval-charts-grid { grid-template-columns: 1fr 1fr; } }
-        .chart-container { background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.9); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 15px rgba(91,143,255,0.05); width: 100%; max-width: 100%; overflow: hidden; }
-        .chart-title { font-size: 14.5px; font-weight: 800; color: #1c2b4a; margin-bottom: 15px; text-align: center; width: 100%; padding-bottom: 12px; border-bottom: 1px solid rgba(180,190,220,0.2); }
-        .canvas-wrap { width: 100%; max-width: 100%; position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-        
-        /* ڕێگریکردن لە کێشەی ChartJS لە مۆبایل */
+        .chart-container { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100%; overflow: hidden; }
+        .chart-title { font-size: 14.5px; font-weight: 800; color: #1c2b4a; margin-bottom: 15px; text-align: center; width: 100%; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; }
+        .canvas-wrap { width: 100%; max-width: 100%; position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; height: 250px; }
         canvas { max-width: 100% !important; }
 
-        /* ── گونجاندنی هەڵسەنگاندن بۆ مۆبایل (شێوەی پانێڵەکانی تر) ── */
+        /* جێگیرکردنی وردەکارییەکان بۆ مۆبایل بەبێ گۆڕینی دیزاینەکە */
         @media(max-width: 1023px) {
-            .eval-modal-wrap {
-                padding: 0; align-items: flex-end; /* لکاندن بە خوارەوە */
-            }
-            .eval-modal-content {
-                background: #f8fbff; /* ڕەنگی سادە بۆ خێرایی مۆبایل */
-                backdrop-filter: none; -webkit-backdrop-filter: none;
-                border: none; border-radius: 24px 24px 0 0;
-                height: 95dvh; max-height: 95dvh;
-                padding: 20px 15px 40px 15px;
-                transform: translateY(100%);
-                box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
-            }
-            .eval-modal-wrap.show .eval-modal-content {
-                transform: translateY(0);
-            }
-            .eval-header { padding: 5px 10px 15px; border-bottom: none; }
-            .eval-title { font-size: 20px; color: #1c2b4a; }
+            .eval-modal-wrap { align-items: flex-end; padding: 0; }
+            .eval-modal-content { border-radius: 24px 24px 0 0; height: 95dvh; max-height: 95dvh; padding: 20px 15px 40px 15px; transform: translateY(100%); }
+            .eval-title { font-size: 20px; }
             .eval-subtitle { font-size: 12.5px; }
-            .eval-body { padding: 0 5px; }
-            
-            /* شاردنەوەی دوگمەی خڕ و پیشاندانی دوگمەی مۆبایل */
-            .eval-close { display: none; }
-            .eval-mobile-close {
-                display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 12px;
-                background: #fff0f0; color: #e74c3c; border: 1px solid #ffd6d6; font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px; font-weight: 800; cursor: pointer; transition: 0.2s; flex-shrink: 0;
-            }
-            .eval-mobile-close:active { transform: scale(0.96); background: #ffe4e4; }
-
-            .eval-section { padding: 15px; border-radius: 18px; margin-bottom: 20px; border: 1px solid rgba(180,190,220,0.3); }
-            
+            .eval-section { padding: 15px; }
             .eval-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .eval-m-box { padding: 12px; border-radius: 14px; }
             .em-val { font-size: 18px; }
             .em-lbl { font-size: 11px; margin-bottom: 5px; }
             .em-desc { font-size: 10.5px; }
-            
-            .chart-container { padding: 15px 10px; border-radius: 16px; overflow: hidden; width: 100%; max-width: 100%; }
-            .chart-title { font-size: 13.5px; margin-bottom: 10px; }
-            .canvas-wrap { height: 220px !important; width: 100%; max-width: 100%; }
+            .chart-container { padding: 15px 10px; }
+            .canvas-wrap { height: 220px !important; }
         }
     </style>
 </head>
@@ -401,7 +361,6 @@
 
     <aside class="side-panel" id="panel-notes" style="direction:rtl;">
         <button class="mobile-close-btn" onclick="closeAllPanels()">✖ داخستنی پانێڵ</button>
-        
         <div class="glass side-widget">
             <div class="sw-title">تێبینییەکان</div>
             <div class="tip-item"><div class="tip-icon ti-b">💡</div><div class="tip-text">ژمارەی ماڵەکان کاریگەری زۆری هەیە لەسەر ئەنجامەکە</div></div>
@@ -409,7 +368,6 @@
             <div class="tip-item"><div class="tip-icon ti-g">📐</div><div class="tip-text">ڕووبەری زۆر بەرز باری تۆکمەی زۆر پێویست دەکات</div></div>
             <div class="tip-item"><div class="tip-icon ti-p">⚖️</div><div class="tip-text">ئاستی دەوڵەمەندی گەڕەک کاریگەرییەکی گەورەی هەیە</div></div>
         </div>
-
         <div class="glass side-widget">
             <div class="sw-title">تەکنەلۆژیاکان</div>
             <div class="tech-row"><span class="tech-name">Python / Flask</span><div class="tech-dot"></div></div>
@@ -418,7 +376,6 @@
             <div class="tech-row"><span class="tech-name">REST API / JSON</span><div class="tech-dot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);"></div></div>
             <div class="tech-row"><span class="tech-name">HTML / CSS / JS</span><div class="tech-dot" style="background:linear-gradient(135deg,#fb923c,#f43f5e);"></div></div>
         </div>
-
         <div class="glass side-widget">
             <div class="sw-title">ستانداردی محەویلەکان</div>
             <div class="stat-row"><span class="stat-label">بچووک</span><span class="sbadge sg">25 kVA</span></div>
@@ -462,10 +419,9 @@
 <div class="eval-modal-wrap" id="evalModal">
     <div class="eval-modal-content">
         
-        <button class="eval-mobile-close" onclick="closeEvalModal()">✖ داخستنی هەڵسەنگاندن</button>
-        
+        <button class="eval-main-close" onclick="closeEvalModal()">✖ داخستنی هەڵسەنگاندن</button>
+
         <div class="eval-header">
-            <button class="eval-close" onclick="closeEvalModal()">✖</button>
             <div class="eval-title">هەڵسەنگاندنی مۆدێلی Random Forest</div>
             <div class="eval-subtitle">پێوەرە زانستییەکان و شیکردنەوەی داتاکانی ڕاهێنانی مۆدێلەکە بەپێی ستانداردە ئەکادیمییەکانی فێربوونی ئامێر (Machine Learning).</div>
         </div>

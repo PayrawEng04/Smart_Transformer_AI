@@ -7,6 +7,7 @@ app = Flask(__name__)
 # ئەم دێڕە ڕێگە دەدات وێبسایتەکەی گیت‌هەب قسە لەگەڵ ئەم سێرڤەرە بکات
 CORS(app) 
 
+# هێنانە ناوەوەی مۆدێلە نوێیەکە
 model = joblib.load('transformer_model.pkl')
 
 @app.route('/predict', methods=['POST'])
@@ -18,15 +19,27 @@ def predict_transformer():
         status = data['status']
         season = data['season']
         
+        # ١. گۆڕینی دۆخی ئابووری بۆ ژمارە
         status_map = {'Low': 1, 'Middle': 2, 'High': 3}
-        season_map = {'Spring': 1, 'Autumn': 2, 'Winter': 3, 'Summer': 4}
+        status_encoded = status_map.get(status, 2) # 2 وەک دیفۆڵت ئەگەر هەڵەیەک هەبوو
         
-        input_data = pd.DataFrame([[houses, area, status_map[status], season_map[season]]], 
-                                  columns=['Num_Houses', 'Avg_Area', 'Status_Encoded', 'Season_Encoded'])
+        # ٢. دروستکردنی ستوونەکانی وەرز (One-Hot Encoding)
+        # تێبینی: وەرزی پاییز (Autumn) سفرە لە هەموویان چونکە drop_first=True مان بەکارهێنا لە مۆدێلەکەدا
+        season_spring = 1 if season == 'Spring' else 0
+        season_summer = 1 if season == 'Summer' else 0
+        season_winter = 1 if season == 'Winter' else 0
         
+        # ٣. خستنە ناو داتا فرەیمێک بە ڕێکخستنی دروستی ستوونەکان (ڕێک وەک ئەوەی مۆدێلەکە فێری بووە)
+        input_data = pd.DataFrame(
+            [[houses, area, status_encoded, season_spring, season_summer, season_winter]], 
+            columns=['Num_Houses', 'Avg_Area', 'Status_Encoded', 'Season_Spring', 'Season_Summer', 'Season_Winter']
+        )
+        
+        # ٤. پێشبینیکردن
         predicted_load = model.predict(input_data)[0]
         
-        standard_sizes = [50, 100, 250, 400, 630, 1000, 1600]
+        # ٥. دیاریکردنی قەبارەی محەویلەکە بە زیادکردنی ١٠٪ سەلامەتی
+        standard_sizes =[50, 100, 250, 400, 630, 1000, 1600]
         rec_size = 1600
         for size in standard_sizes:
             if size >= (predicted_load * 1.1):
@@ -45,7 +58,7 @@ def predict_transformer():
 # ئەم بەشە تەنها بۆ تاقیکردنەوەی سەرەتاییە
 @app.route('/')
 def home():
-    return "API is running successfully!"
+    return "API is running successfully with the New ML Model!"
 
 if __name__ == '__main__':
     app.run()

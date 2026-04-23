@@ -589,6 +589,7 @@
         loadingEl.classList.add('show'); resultBox.style.display = 'none';
         const dataPacket = { houses:parseInt(houses), area:parseInt(area), status:status, season:season };
 
+
         try {
             const response = await fetch('https://smart-transformer-ai-payraweng04.onrender.com/predict', {
                 method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(dataPacket)
